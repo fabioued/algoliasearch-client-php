@@ -377,6 +377,10 @@ class SearchIndex
             $synonyms = $iteratedOver;
         }
 
+        if (empty($synonyms)) {
+            return new NullResponse();
+        }
+
         Helpers::ensureObjectID($synonyms, 'All synonyms must have an unique objectID to be valid');
 
         $response = $this->api->write(
@@ -484,6 +488,10 @@ class SearchIndex
                 $iteratedOver[] = $r;
             }
             $rules = $iteratedOver;
+        }
+
+        if (empty($rules)) {
+            return new NullResponse();
         }
 
         Helpers::ensureObjectID($rules, 'All rules must have an unique objectID to be valid');
